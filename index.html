@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chun-Ya Hsieh - Data Analytics Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .portfolio-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        .profile-name {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-title {
+            font-size: 1.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Content Sections */
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            border-radius: 2px;
+        }
+
+        /* Experience Cards */
+        .experience-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .job-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .company {
+            font-size: 1.2rem;
+            color: #3498db;
+            font-weight: 500;
+        }
+
+        .date {
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .job-description {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Project Cards */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .project-tools {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tool-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .metric {
+            text-align: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #3498db;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .project-details {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .project-details ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .project-details li {
+            margin-bottom: 8px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .skill-category h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-item {
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .profile-name {
+                font-size: 2.5rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .job-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="portfolio-card">
+            <div class="header">
+                <h1 class="profile-name">Chun-Ya Hsieh</h1>
+                <p class="profile-title">Data Analyst & Business Intelligence Specialist</p>
+                <div class="contact-info">
+                    <a href="mailto:your.email@example.com" class="contact-item">
+                        📧 Contact Email
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" class="contact-item">
+                        💼 LinkedIn
+                    </a>
+                    <a href="https://github.com/yourprofile" class="contact-item">
+                        🔗 GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education Section -->
+        <div class="portfolio-card">
+            <div class="content">
+                <div class="section">
+                    <h2 class="section-title">Education</h2>
+                    <div class="experience-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Master of Science in Biostatistics</div>
+                                <div class="company">National Taiwan University</div>
+                                <p style="color: #666; margin-top: 5px;">Institute of Epidemiology and Preventive Medicine</p>
+                            </div>
+                            <div class="date">Sep 2021 - Aug 2023</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Experience Section -->
+        <div class="portfolio-card">
+            <div class="content">
+                <div class="section">
+                    <h2 class="section-title">Professional Experience</h2>
+                    
+                    <div class="experience-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Data Analyst</div>
+                                <div class="company">Shopee</div>
+                            </div>
+                            <div class="date">Sep 2021 - Jun 2024</div>
+                        </div>
+                        <div class="job-description">
+                            <p>Designed and implemented platform shipping fee policies, participating in free shipping campaigns that successfully increased order volume by 10% while reducing shipping costs by 10%. Based on company conditions, provided operational direction recommendations and utilized A/B testing to identify performance breakthrough points. Built highly readable reports using SQL and Google Sheets to provide real-time data insights.</p>
+                        </div>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="job-header">
+                            <div>
+                                <div class="job-title">Data Engineer</div>
+                                <div class="company">Bestcom Infotech Corp</div>
+                            </div>
+                            <div class="date">Jul 2020 - Aug 2021</div>
+                        </div>
+                        <div class="job-description">
+                            <ul>
+                                <li>Participated in Shin Kong Life Insurance project, utilizing SAS Visual Analytics tools to develop risk management analysis reports for insurance agents</li>
+                                <li>Served as Teaching Assistant for NTU MIS course - SAS Enterprise Guide</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="portfolio-card">
+            <div class="content">
+                <div class="section">
+                    <h2 class="section-title">Featured Projects</h2>
+                    
+                    <div class="project-grid">
+                        <!-- Project 1 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3 class="project-title">Shopee Free Shipping Campaign</h3>
+                                <div class="project-tools">
+                                    <span class="tool-tag">SQL</span>
+                                    <span class="tool-tag">A/B Testing</span>
+                                    <span class="tool-tag">Google Sheets</span>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-metrics">
+                                    <div class="metric">
+                                        <div class="metric-value">+10%</div>
+                                        <div class="metric-label">Order Volume</div>
+                                    </div>
+                                    <div class="metric">
+                                        <div class="metric-value">-10%</div>
+                                        <div class="metric-label">Shipping Costs</div>
+                                    </div>
+                                </div>
+                                <div class="project-details">
+                                    <p><strong>Challenge:</strong> Users frequently unable to use free shipping coupons, need to expand store-to-store market share.</p>
+                                    <p><strong>Solution:</strong></p>
+                                    <ul>
+                                        <li>Used SQL to analyze consumer behavior and seller participation</li>
+                                        <li>Conducted risk assessment across multiple scenarios</li>
+                                        <li>Implemented A/B testing to optimize performance</li>
+                                        <li>Coordinated cross-departmental rollout</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 2 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3 class="project-title">Insurance Risk Assessment</h3>
+                                <div class="project-tools">
+                                    <span class="tool-tag">SAS Visual Analytics</span>
+                                    <span class="tool-tag">Risk Modeling</span>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-details">
+                                    <p><strong>Objective:</strong> Develop comprehensive risk management dashboards for Shin Kong Life Insurance agents.</p>
+                                    <p><strong>Key Features:</strong></p>
+                                    <ul>
+                                        <li>Risk distribution analysis by department</li>
+                                        <li>High-risk agent identification system</li>
+                                        <li>Scenario parameter optimization</li>
+                                        <li>Real-time risk trend monitoring</li>
+                                        <li>Interactive dashboard for stakeholders</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 3 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3 class="project-title">Annual Sales Analysis</h3>
+                                <div class="project-tools">
+                                    <span class="tool-tag">Tableau</span>
+                                    <span class="tool-tag">Data Visualization</span>
+                                </div>
+                            </div>
+                            <div class="project-content">
+                                <div class="project-metrics">
+                                    <div class="metric">
+                                        <div class="metric-value">68.5%</div>
+                                        <div class="metric-label">RS Dept Share</div>
+                                    </div>
+                                    <div class="metric">
+                                        <div class="metric-value">$85.4M</div>
+                                        <div class="metric-label">Bio Sales</div>
+                                    </div>
+                                </div>
+                                <div class="project-details">
+                                    <p><strong>Analysis Period:</strong> Jan 2020 - Apr 2021</p>
+                                    <p><strong>Key Insights:</strong></p>
+                                    <ul>
+                                        <li>Identified seasonal patterns across departments</li>
+                                        <li>Farm segment: highest revenue source ($78.2M, 131k units)</li>
+                                        <li>Different customer segments use different channels</li>
+                                        <li>Provided inventory and marketing recommendations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="portfolio-card">
+            <div class="content">
+                <div class="section">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Data Analysis & Modeling</h3>
+                            <div class="skill-list">
+                                <span class="skill-item">SQL</span>
+                                <span class="skill-item">SAS</span>
+                                <span class="skill-item">Python</span>
+                                <span class="skill-item">R</span>
+                                <span class="skill-item">Statistical Modeling</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Data Visualization</h3>
+                            <div class="skill-list">
+                                <span class="skill-item">Tableau</span>
+                                <span class="skill-item">SAS Visual Analytics</span>
+                                <span class="skill-item">Google Sheets</span>
+                                <span class="skill-item">Dashboard Design</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Business Intelligence</h3>
+                            <div class="skill-list">
+                                <span class="skill-item">A/B Testing</span>
+                                <span class="skill-item">Risk Assessment</span>
+                                <span class="skill-item">Performance Analysis</span>
+                                <span class="skill-item">Strategic Planning</span>
+                            </div>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Industry Knowledge</h3>
+                            <div class="skill-list">
+                                <span class="skill-item">E-commerce</span>
+                                <span class="skill-item">Insurance</span>
+                                <span class="skill-item">Logistics</span>
+                                <span class="skill-item">Biostatistics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
